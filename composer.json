@@ -1,0 +1,30 @@
+{
+  "name": "qingclouds/thinklib",
+  "description": "quickly!quickly!quickly!",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "files": [
+      "src/common.php"
+    ],
+    "psr-4": {
+      "Qingclouds\\Thinklib\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "xiaojun",
+      "email": "function@qingcloud.cn"
+    }
+  ],
+  "require": {
+    "php": "^7.1|^8.0",
+    "ext-gd": "*",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-iconv": "*",
+    "ext-openssl": "*",
+    "ext-mbstring": "*",
+    "topthink/framework": "^6.0.13"
+  }
+}
