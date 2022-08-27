@@ -15,8 +15,8 @@ class ApiBaseController extends BaseThinkAppController
   public $table;
   public $column = null; //五分钟内时间戳过期
   public $condition = null; //前后端交互数据的加密秘钥
-  public $filed = null;
-  public $nofiled = null;
+  public $field = null;
+  public $nofield = null;
   public $order = null;
   public $filter = null;
   public $op = null;
@@ -39,7 +39,7 @@ class ApiBaseController extends BaseThinkAppController
     foreach ($params as $key => $value) {
 
       //注入其他条件
-      if (strpos('id,filed,nofiled,order,with,limit,pageSize,paginate,page,filter,op,maps', $key) > -1) {
+      if (strpos('id,field,nofield,order,with,limit,pageSize,paginate,page,filter,op,maps', $key) > -1) {
         $this->$key = $value;
       }
 

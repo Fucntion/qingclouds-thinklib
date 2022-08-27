@@ -9,7 +9,7 @@ namespace Qingclouds\Thinklib\Media;
  */
 class RichService
 {
-  private $imgExt = ['jpg', 'png'];
+  //private $imgExt = ['jpg', 'png'];
 
   /**
    * 过滤富文本中的图片，替换成本站oss的地址

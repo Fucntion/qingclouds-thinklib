@@ -81,7 +81,7 @@ class JSDBC extends ApiBaseController
         if (empty($tableName)) {
           error('tableName is empty');
         }
-        $param['query'] = "select distinct *,column_name as filed,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$table_schema}' and table_name = '{$tableName}'";
+        $param['query'] = "select distinct *,column_name as field,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$table_schema}' and table_name = '{$tableName}'";
         $this->_diyQuery($param);
         break;
       default:
@@ -176,12 +176,12 @@ class JSDBC extends ApiBaseController
     //}
 
     // 筛选字段 优先级要比忽略的高
-    if ($this->filed) {
-      $query = $query->field($this->filed);
+    if ($this->field) {
+      $query = $query->field($this->field);
     } else {
       //列表忽略字段
-      if ($this->nofiled) {
-        $query->withoutField($this->nofiled);
+      if ($this->nofield) {
+        $query->withoutField($this->nofield);
       }
     }
 
@@ -208,8 +208,8 @@ class JSDBC extends ApiBaseController
           'table|关联表名' => 'require',
           'self_key|当前表key' => 'require',
           'with_key|指定表key' => 'require',
-          //'with_filed|仅获取指定字段'=>'require',
-          //'with_nofiled|关联表不要的字段'=>'require',
+          //'with_field|仅获取指定字段'=>'require',
+          //'with_nofield|关联表不要的字段'=>'require',
           //'bind_attr_name|绑定属性名字'=>'require',
         ];
 
@@ -219,15 +219,15 @@ class JSDBC extends ApiBaseController
         $with_key = $with['with_key'];
         $bind_attr_name = isset($with['bind_attr_name']) ? $with['bind_attr_name'] : 'withInfo';
 
-        $with_nofiled = isset($with['with_nofiled']) ? $with['with_nofiled'] : '';
-        $with_filed = isset($with['with_filed']) ? $with['with_filed'] : '';
+        $with_nofield = isset($with['with_nofield']) ? $with['with_nofield'] : '';
+        $with_field = isset($with['with_field']) ? $with['with_field'] : '';
         $withListQuery = Db::name($with_table)->where($with_key, 'in', get_arr_column($list, $self_key));
 
-        if (!empty($with_nofiled)) {
-          $withListQuery = $withListQuery->withoutField($with_nofiled);
+        if (!empty($with_nofield)) {
+          $withListQuery = $withListQuery->withoutField($with_nofield);
         }
-        if (!empty($with_filed)) {
-          $withListQuery = $withListQuery->field($with_filed);
+        if (!empty($with_field)) {
+          $withListQuery = $withListQuery->field($with_field);
         }
 
         $withList = $withListQuery->select()->toArray();
@@ -285,12 +285,12 @@ class JSDBC extends ApiBaseController
 
 
     // 筛选字段 优先级要比忽略的高
-    if ($this->filed) {
-      $query = $query->field($this->filed);
+    if ($this->field) {
+      $query = $query->field($this->field);
     } else {
       //列表忽略字段
-      if ($this->nofiled) {
-        $query->withoutField($this->nofiled);
+      if ($this->nofield) {
+        $query->withoutField($this->nofield);
       }
     }
 

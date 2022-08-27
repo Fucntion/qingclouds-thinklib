@@ -8,7 +8,7 @@
       "src/common.php"
     ],
     "psr-4": {
-      "Qingclouds\\Thinklib\\": "src"
+      "Qingclouds\\Thinklib\\": "src/"
     }
   },
   "authors": [
