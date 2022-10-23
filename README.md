@@ -15,3 +15,27 @@
 ## 中间件
 ### 日志中间件
 格式化日志，tp6自带的格式没有tp5时代的好用
+
+### 快速搭建CURD的api
+```php
+<?php
+
+namespace app\bk\controller;
+
+use Qingclouds\Thinklib\api\JSDBC;
+
+class Query
+{
+
+  /**
+   * curd
+   */
+  public function jsdbc()
+  {
+
+    $jsdbc = new JSDBC();
+    $jsdbc->query();
+  }
+
+}
+```
