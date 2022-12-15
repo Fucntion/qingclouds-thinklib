@@ -20,9 +20,9 @@
 ```php
 <?php
 
-namespace app\bk\controller;
+namespace app\api\controller;
 
-use Qingclouds\Thinklib\api\JSDBC;
+use Qingclouds\Thinklib\Api\JSDBC;
 
 class Query
 {

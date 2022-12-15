@@ -2,7 +2,7 @@
 
 declare (strict_types=1);
 
-use Qingclouds\Thinklib\Tools\facade\Db;
+use Qingclouds\Thinklib\Facade\Db;
 
 //if (!function_exists('test')) {
 //  function test($data)
@@ -60,7 +60,7 @@ if (!function_exists('saveFile')) {
 
     if (!is_dir($mkpath)) {
       if (!mkdir($mkpath)) {
-        throw new \think\Exception('no mkdir power');
+        throw new \Exception('no mkdir power');
       }
       //if (!chmod($mkpath, 0777)) {//若服务器在阿里云上不建议使用0644
       //    die('no chmod power');
@@ -71,7 +71,7 @@ if (!function_exists('saveFile')) {
       //写入图片流生成图片
       return $upload_dir . DIRECTORY_SEPARATOR . $filename;//返回图片路径
     } else {
-      throw new \think\Exception('save failed');
+      throw new \Exception('save failed');
     }
 
   }
@@ -90,7 +90,7 @@ if (!function_exists('saveFile')) {
     list($field, $raw) = explode('|', "$name|");
     if ($value !== null) {
       list($row, $data) = [['name' => $field, 'value' => $value], []];
-      return Data::save('SystemConfig', $row, 'name');
+      return \Qingclouds\Thinklib\Tools\Data::save('SystemConfig', $row, 'name');
     }
     if (empty($data)) {
       $data = Db::name('SystemConfig')->column('value', 'name');
@@ -99,37 +99,6 @@ if (!function_exists('saveFile')) {
   }
 }
 
-if (!function_exists('success')) {
-  /**
-   * @param string $msg 消息内容
-   * @param array $data 返回数据
-   * @param int $code 返回代码
-   * @return void
-   */
-  function success($msg = 'success', $data = [], $code = 1)
-  {
-    if ($msg == null) $msg = 'success';
-    $result = ['code' => $code, 'msg' => $msg, 'data' => $data];
-    //write_log($result, 'api_result');
-    //header("Content-type:text/json");
-    die(json_encode($result));
-  }
-}
-if (!function_exists('error')) {
-  /**
-   * 返回失败的请求
-   * @param mixed $msg 消息内容
-   * @param array $data 返回数据
-   * @param integer $code 返回代码
-   * @return void
-   */
-  function error($msg = 'error', $data = [], $code = 0)
-  {
-    $result = ['code' => $code, 'msg' => $msg, 'data' => $data];
-    //write_log($result, 'api_result');
-    //header("Content-type:text/json");
-    die(json_encode($result));
-  }
-}
+
 
 
