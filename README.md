@@ -4,6 +4,12 @@
 ## thinkphp6
 方便thinkphp6下快速开发
 
+## 地址
+```
+https://packagist.org/packages/qingclouds/thinklib
+https://github.com/Fucntion/qingclouds-thinklib
+```
+
 ## 常用方法
 
 ## 文件与文件夹操作
