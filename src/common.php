@@ -2,7 +2,7 @@
 
 declare (strict_types=1);
 
-use Qingclouds\Thinklib\Facade\Db;
+
 
 //if (!function_exists('test')) {
 //  function test($data)
@@ -93,7 +93,7 @@ if (!function_exists('saveFile')) {
       return \Qingclouds\Thinklib\Tools\Data::save('SystemConfig', $row, 'name');
     }
     if (empty($data)) {
-      $data = Db::name('SystemConfig')->column('value', 'name');
+      $data = \think\facade\Db::name('SystemConfig')->column('value', 'name');
     }
     return isset($data[$field]) ? (strtolower($raw) === 'raw' ? $data[$field] : htmlspecialchars($data[$field])) : '';
   }
