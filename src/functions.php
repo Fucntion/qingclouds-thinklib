@@ -18,14 +18,14 @@ use think\facade\Validate;
 //}
 
 
-if (function_exists('success_only_data')) {
+if (!function_exists('success_only_data')) {
   function success_only_data($data = null, $msg = 'success', $code = 1)
   {
     success($msg, $data, $code);
   }
 }
 
-if (function_exists('success')) {
+if (!function_exists('success')) {
   /**
    * @param string $msg 消息内容
    * @param array $data 返回数据
@@ -44,7 +44,7 @@ if (function_exists('success')) {
 }
 
 
-if (function_exists('error')) {
+if (!function_exists('error')) {
   function error($errMsg = '', $errCode = '', $msg = 'fail', $code = 0)
   {
     $errData = [];
@@ -59,7 +59,7 @@ if (function_exists('error')) {
   }
 }
 
-if (function_exists('abort_api')) {
+if (!function_exists('abort_api')) {
   /**
    * 返回失败的请求
    * @param mixed $msg 消息内容
@@ -166,7 +166,7 @@ if (!function_exists('sysconf')) {
 }
 
 
-if (function_exists('validate_func')) {
+if (!function_exists('validate_func')) {
   function validate_func($data, $rules)
   {
     $validate = Validate::rule($rules);
@@ -178,7 +178,7 @@ if (function_exists('validate_func')) {
 }
 
 
-if (function_exists('cutstr')) {
+if (!function_exists('cutstr')) {
   /**
    * @param $str
    * @param $len
@@ -191,7 +191,7 @@ if (function_exists('cutstr')) {
 }
 
 
-if (function_exists('randPasswordSalt')) {
+if (!function_exists('randPasswordSalt')) {
   function randPasswordSalt($len = 10)
   {
     $chars = str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 3);
@@ -203,7 +203,7 @@ if (function_exists('randPasswordSalt')) {
   }
 }
 
-if (function_exists('isEmptyObject')) {
+if (!function_exists('isEmptyObject')) {
   /**
    * 查看一个变量是不是常见的空值。空字符串在php里面居然等同true。。。
    * @param $obj
@@ -227,7 +227,7 @@ if (function_exists('isEmptyObject')) {
   }
 }
 
-if (function_exists('get_arr_column')) {
+if (!function_exists('get_arr_column')) {
   /**
    * 获取数组中的某一列
    * @param array $arr 数组
@@ -246,7 +246,7 @@ if (function_exists('get_arr_column')) {
   }
 }
 
-if (function_exists('format_number')) {
+if (!function_exists('format_number')) {
   function format_number($val)
   {
     if (gettype($val) === 'string') {
@@ -256,7 +256,7 @@ if (function_exists('format_number')) {
   }
 }
 
-if (function_exists('computed_array_column_sum')) {
+if (!function_exists('computed_array_column_sum')) {
   /**
    * 获取某个数组中的指定列的和
    * @param $arr
@@ -294,7 +294,7 @@ if (!function_exists('randString')) {
   }
 }
 
-if (function_exists('changePoint')) {
+if (!function_exists('changePoint')) {
   /**
    * 修改积分
    * @param int $uid 用户id
@@ -357,7 +357,7 @@ if (function_exists('changePoint')) {
 }
 
 
-if (function_exists('isMobile')) {
+if (!function_exists('isMobile')) {
   /**
    * 验证手机号是否正确
    * @param string $mobile
@@ -374,7 +374,7 @@ if (function_exists('isMobile')) {
 }
 
 
-if (function_exists('checkPhoneCode')) {
+if (!function_exists('checkPhoneCode')) {
   /**
    * @param $BizId
    * @param $code
@@ -408,7 +408,7 @@ if (function_exists('checkPhoneCode')) {
   }
 }
 
-if (function_exists('uuid')) {
+if (!function_exists('uuid')) {
   /**
    * @param string $prefix
    * @return string
@@ -425,7 +425,7 @@ if (function_exists('uuid')) {
   }
 }
 
-if (function_exists('getUpFilePath')) {
+if (!function_exists('getUpFilePath')) {
 
   function getUpFilePath()
   {
@@ -505,7 +505,7 @@ if (!function_exists('saveFile')) {
   }
 }
 
-if (function_exists('getNowTime')) {
+if (!function_exists('getNowTime')) {
   function getNowTime($format = 'Y-m-d h:i:s')
   {
     return date($format, time());
@@ -513,7 +513,7 @@ if (function_exists('getNowTime')) {
 }
 
 
-if (function_exists('formatTimeStamp')) {
+if (!function_exists('formatTimeStamp')) {
   function formatTimeStamp($timeStampNumber, $format = 'Y-m-d h:i:s')
   {
     return date($format, $timeStampNumber);
@@ -521,7 +521,7 @@ if (function_exists('formatTimeStamp')) {
 }
 
 
-if (function_exists('validation_filter_id_card')) {
+if (!function_exists('validation_filter_id_card')) {
   /**
    * 身份证号码验证（真正要调用的方法）
    * @param string $id_card 身份证号码
@@ -559,7 +559,7 @@ if (function_exists('validation_filter_id_card')) {
 }
 
 
-if (function_exists('idcard_verify_number')) {
+if (!function_exists('idcard_verify_number')) {
   /**
    * 计算身份证校验码，根据国家标准GB 11643-1999
    * @param string $idcard_base 身份证号码
@@ -588,7 +588,7 @@ if (function_exists('idcard_verify_number')) {
 }
 
 
-if (function_exists('downloadExcel')) {
+if (!function_exists('downloadExcel')) {
   /**
    * 导出excel
    * @param string $strTable 表格内容
@@ -605,14 +605,14 @@ if (function_exists('downloadExcel')) {
   }
 }
 
-if (function_exists('write_log')) {
+if (!function_exists('write_log')) {
   function write_log($log, $level = 'fun')
   {
     Log::write($log, $level);
   }
 }
 
-if (function_exists('create_full_log')) {
+if (!function_exists('create_full_log')) {
   /**
    * 快速创建完整的错误日志
    * @param $e
@@ -626,7 +626,7 @@ if (function_exists('create_full_log')) {
   }
 }
 
-if (function_exists('create_api_error')) {
+if (!function_exists('create_api_error')) {
   function create_api_error($txt = '接口错误')
   {
 
@@ -660,7 +660,7 @@ if (function_exists('create_api_error')) {
 }
 
 
-if (function_exists('arraySort')) {
+if (!function_exists('arraySort')) {
   /**
    * 二维数组根据某个字段排序
    * @param array $array 要排序的数组
@@ -680,7 +680,7 @@ if (function_exists('arraySort')) {
 }
 
 
-if (function_exists('filter_price')) {
+if (!function_exists('filter_price')) {
   function filter_price($num)
   {
 
@@ -696,14 +696,14 @@ if (function_exists('filter_price')) {
   }
 }
 
-if (function_exists('writeln')) {
+if (!function_exists('writeln')) {
   function writeln($str)
   {
     echo $str . "\n\r";
   }
 }
 
-if (function_exists('encode')) {
+if (!function_exists('encode')) {
   /**
    * 加密 UTF8 字符串
    * @param string $string
@@ -717,7 +717,7 @@ if (function_exists('encode')) {
   }
 }
 
-if (function_exists('decode')) {
+if (!function_exists('decode')) {
   /**
    * 解密 UTF8 字符串
    * @param string $encode
@@ -769,7 +769,7 @@ if (!function_exists('emoji_clear')) {
     return Emoji::clear($content);
   }
 }
-if (function_exists('_getFloat')) {
+if (!function_exists('_getFloat')) {
   /**
    * 获取浮点数
    * @param $newspay
@@ -790,7 +790,7 @@ if (function_exists('_getFloat')) {
   }
 }
 
-if (function_exists('formatGoodsSpec')) {
+if (!function_exists('formatGoodsSpec')) {
   /**
    * 转换商品规格的方法
    * @param string $goods_spec 规格字符串
@@ -814,7 +814,7 @@ if (function_exists('formatGoodsSpec')) {
 }
 
 
-if (function_exists('new_addslashes')) {
+if (!function_exists('new_addslashes')) {
   /**
    * 返回经addslashes处理过的字符串或数组
    * @param string $string 需要处理的字符串或数组
@@ -828,7 +828,7 @@ if (function_exists('new_addslashes')) {
   }
 }
 
-if (function_exists('buildFullUrl')) {
+if (!function_exists('buildFullUrl')) {
   function buildFullUrl($url)
   {
     $parseInfo = parse_url($url);
@@ -847,7 +847,7 @@ if (function_exists('buildFullUrl')) {
 }
 
 
-if (function_exists('getParamsByUrl')) {
+if (!function_exists('getParamsByUrl')) {
   /**
    * 从字符串中获取参数
    * @param string $url http链接
@@ -880,7 +880,7 @@ if (function_exists('getParamsByUrl')) {
 }
 
 
-if (function_exists('deldir')) {
+if (!function_exists('deldir')) {
   function deldir($dir)
   {
     //先删除目录下的文件：
@@ -907,7 +907,7 @@ if (function_exists('deldir')) {
 }
 
 
-if (function_exists('getCsvData')) {
+if (!function_exists('getCsvData')) {
   /**
    * 获取cvs格式文件
    * @param $filePath
@@ -930,7 +930,7 @@ if (function_exists('getCsvData')) {
 }
 
 
-if (function_exists('array_paginate_func')) {
+if (!function_exists('array_paginate_func')) {
   /**
    * 数组分页函数  核心函数  array_slice
    * @param array $array 查询出来的所有数组
@@ -952,7 +952,7 @@ if (function_exists('array_paginate_func')) {
 }
 
 
-if (function_exists('array_to_object')) {
+if (!function_exists('array_to_object')) {
   /**
    * 数组 转 对象
    *
@@ -974,7 +974,7 @@ if (function_exists('array_to_object')) {
   }
 }
 
-if (function_exists('object_to_array')) {
+if (!function_exists('object_to_array')) {
   /**
    * 对象 转 数组
    *
@@ -997,7 +997,7 @@ if (function_exists('object_to_array')) {
   }
 }
 
-if (function_exists('is_week')) {
+if (!function_exists('is_week')) {
   function is_week($str)
   {
     if ((date('w', strtotime($str)) == 6) || (date('w', strtotime($str)) == 0)) {
@@ -1008,7 +1008,7 @@ if (function_exists('is_week')) {
   }
 }
 
-if (function_exists('get_string_number')) {
+if (!function_exists('get_string_number')) {
   function get_string_number($num)
   {
     if ($num < 10) return '0' . $num;
@@ -1017,7 +1017,7 @@ if (function_exists('get_string_number')) {
 }
 
 
-if (function_exists('view_debug')) {
+if (!function_exists('view_debug')) {
   function view_debug($arg)
   {
     echo '<pre>';
