@@ -93,7 +93,8 @@ if (!function_exists('saveFile')) {
       return \Qingclouds\Thinklib\Tools\Data::save('SystemConfig', $row, 'name');
     }
     if (empty($data)) {
-      $data = \think\facade\Db::name('SystemConfig')->column('value', 'name');
+      $db = new \think\Db();
+      $data = $db->name('SystemConfig')->column('value', 'name');
     }
     return isset($data[$field]) ? (strtolower($raw) === 'raw' ? $data[$field] : htmlspecialchars($data[$field])) : '';
   }
