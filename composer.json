@@ -3,6 +3,9 @@
   "description": "quickly!quickly!quickly!",
   "type": "library",
   "license": "MIT",
+  "archive": {
+    "exclude": ["/dev.md"]
+  },
   "autoload": {
     "files": [
       "src/functions.php"
