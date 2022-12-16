@@ -5,7 +5,7 @@
   "license": "MIT",
   "autoload": {
     "files": [
-      "src/common.php"
+      "src/functions.php"
     ],
     "psr-4": {
       "Qingclouds\\Thinklib\\": "src/"

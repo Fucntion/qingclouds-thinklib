@@ -2,6 +2,8 @@
 
 namespace Qingclouds\Thinklib\Tools;
 
+use think\facade\Request;
+
 /**
  * 控制器节点管理器
  * Class Node

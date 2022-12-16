@@ -2,8 +2,8 @@
 
 namespace Qingclouds\Thinklib\Tools;
 
+use Qingclouds\Thinklib\Facade\Db;
 use think\db\Query;
-use think\facade\Db;
 
 /**
  * 数据库快捷操作
