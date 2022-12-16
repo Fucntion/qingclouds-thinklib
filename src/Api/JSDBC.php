@@ -25,17 +25,19 @@ class JSDBC extends ApiBaseController
    */
   protected $pkValue;
 
-  /**
+    /**
+   * $params
+   * @param $params
    * @return void
    */
-  public function query()
+  public function query($params)
   {
 
     $base_rules = [
       'table|数据库名称' => 'require',
     ];
 
-    $action = input('action', 'list');
+    $action = isset($params['action'])?$params['action']:'list';
 
     if ($action === 'query') {
       $base_rules = [
@@ -48,29 +50,29 @@ class JSDBC extends ApiBaseController
       ];
     }
 
-    $param = $this->request->post();
-    $this->validate($param, $base_rules);
-    $this->table = input('table');
+    //$param = $this->request->post();
+    $this->validate($params, $base_rules);
+    $this->table = $params['table'];
 
 
     //设置一些参数
-    $this->setSql($param);
+    $this->setSql($params);
 
     switch ($action) {
       case 'list':
-        $this->_query($param);
+        $this->_query($params);
         break;
       case 'read':
-        $this->_read($param);
+        $this->_read($params);
         break;
       case 'deleted':
-        $this->_deleted($param);
+        $this->_deleted($params);
         break;
       case 'save':
-        $this->_save($param);
+        $this->_save($params);
         break;
       case 'query':
-        $this->_diyQuery($param);
+        $this->_diyQuery($params);
         break;
       case 'queryTable':
         $tableName = input('tableName');
@@ -81,8 +83,8 @@ class JSDBC extends ApiBaseController
         if (empty($tableName)) {
           error('tableName is empty');
         }
-        $param['query'] = "select distinct *,column_name as field,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$table_schema}' and table_name = '{$tableName}'";
-        $this->_diyQuery($param);
+        $params['query'] = "select distinct *,column_name as field,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$table_schema}' and table_name = '{$tableName}'";
+        $this->_diyQuery($params);
         break;
       default:
         error('action必传');

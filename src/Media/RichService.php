@@ -3,13 +3,34 @@
 namespace Qingclouds\Thinklib\Media;
 
 
-/**
- * Class RichService
- * @package service
- */
+/*
+use static;*
+* Class RichService
+* @package service
+*/
 class RichService
 {
   //private $imgExt = ['jpg', 'png'];
+
+
+  public static function mk()
+  {
+    return new static ();
+  }
+
+  /**
+   * Summary of saveImgFromList
+   * @param mixed $content
+   * @param mixed $dist
+   * @param mixed $url
+   * @return array
+   */
+  public function saveImgFromList($content, $dist = null, $url = null)
+  {
+    $res = array();
+    $res['content'] = $content;
+    return $res;
+  }
 
   /**
    * 过滤富文本中的图片，替换成本站oss的地址
@@ -18,7 +39,7 @@ class RichService
    * @param $url
    * @return array|void
    */
-//  public function saveImgFromList($content, $dist = null, $url = null)
+  //  public function saveImgFromList($content, $dist = null, $url = null)
 //  {
 //
 //    try {
@@ -62,7 +83,7 @@ class RichService
 //      $newImgUrls = $newImgInfo['newImgUrls'];
 //
   /*      $patterns = array('/<img\s.*?>/');*/
-//      $callback = function ($matches) use (&$newImgTags) {
+  //      $callback = function ($matches) use (&$newImgTags) {
 //        $matches[0] = array_shift($newImgTags);
 //        return $matches[0];
 //      };
@@ -89,9 +110,10 @@ class RichService
     $httpinfo = curl_getinfo($ch);
 
     curl_close($ch);
-    $imageAll = array_merge(array(
-      'imgBody' => $package
-    ), $httpinfo);
+    $imageAll = array_merge(
+      array(
+        'imgBody' => $package
+      ), $httpinfo);
     return $imageAll;
   }
 
@@ -110,7 +132,7 @@ class RichService
     return $list;
   }
 
-//  public function testWxImg()
+  //  public function testWxImg()
 //  {
 //
 //    $url = 'http://mmbiz.qpic.cn/mmbiz_png/lnZQE7bzTT3K4D0GyAU57qhXyaJtiaXyageBpT8qbY8DgchGmOtye53hDwG9987Ze7hBurA4H13q2jyqll9b7PQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1';
