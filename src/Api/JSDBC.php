@@ -44,11 +44,11 @@ class JSDBC extends ApiBaseController
         'query|查询脚本' => 'require',
       ];
     }
-    if ($action === 'queryTable') {
-      $base_rules = [
-        'tableName|查询的table' => 'require',
-      ];
-    }
+    // if ($action === 'queryTable') {
+    //   $base_rules = [
+    //     'tableName|查询的table' => 'require',
+    //   ];
+    // }
 
     //$param = $this->request->post();
     $this->validate($params, $base_rules);
@@ -75,15 +75,15 @@ class JSDBC extends ApiBaseController
         $this->_diyQuery($params);
         break;
       case 'queryTable':
-        $tableName = input('tableName');
-        $table_schema = env('database.database', '');
-        if (empty($table_schema)) {
-          error('table_schema is empty');
+        $tableName = $this->table;
+        $databaseName = env('database.database', '');
+        if (empty($databaseName)) {
+          error('databaseName is empty');
         }
         if (empty($tableName)) {
           error('tableName is empty');
         }
-        $params['query'] = "select distinct *,column_name as field,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$table_schema}' and table_name = '{$tableName}'";
+        $params['query'] = "select distinct *,column_name as field,column_comment as comment,IS_NULLABLE as isnull from information_schema.columns where table_schema = '{$databaseName}' and table_name = '{$tableName}'";
         $this->_diyQuery($params);
         break;
       default:
