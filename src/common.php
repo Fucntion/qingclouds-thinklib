@@ -77,7 +77,7 @@ if (!function_exists('saveFile')) {
   }
 }
 
-if (!function_exists('saveFile')) {
+if (!function_exists('sysconf')) {
   /**
    * 设备或配置系统参数
    * @param string $name 参数名称
