@@ -2,7 +2,7 @@
 
 namespace Qingclouds\Thinklib\Api;
 
-use Qingclouds\Thinklib\base\BaseThinkAppController;
+use Qingclouds\Thinklib\Base\BaseThinkAppController;
 
 class ApiBaseController extends BaseThinkAppController
 {

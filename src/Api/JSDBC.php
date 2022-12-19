@@ -2,8 +2,8 @@
 
 namespace Qingclouds\Thinklib\Api;
 
-use Qingclouds\Thinklib\facade\Db;
-use Qingclouds\Thinklib\media\RichService;
+use Qingclouds\Thinklib\Facade\Db;
+use Qingclouds\Thinklib\Media\RichService;
 
 //use app\common\model\OpenApps;
 

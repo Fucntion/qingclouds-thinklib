@@ -7,7 +7,7 @@ namespace Qingclouds\Thinklib\Tools;
 /**
  * 处理 Emoji 表情
  * Class Emoji
- * @package library\tools
+ * @package Qingclouds\Thinklib\Tools
  */
 class Emoji
 {
