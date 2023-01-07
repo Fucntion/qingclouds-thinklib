@@ -673,29 +673,6 @@ if (!function_exists('_getFloat')) {
   }
 }
 
-if (!function_exists('formatGoodsSpec')) {
-  /**
-   * 转换商品规格的方法
-   * @param string $goods_spec 规格字符串
-   * @param int $isString 是否需要转化为字符串
-   * @return array|false|string|string[]
-   */
-  function formatGoodsSpec($goods_spec, $isString = 1, $strSeparator = ' ')
-  {
-    if (!$goods_spec) return $isString == 1 ? '' : [];
-    $rt = [];
-    $tempArr1 = explode(';;', $goods_spec);
-    foreach ($tempArr1 as $row) {
-      $tempArr2 = explode('::', $row);
-      $rt[] = $tempArr2[1];
-    }
-    if ($isString == 1) {
-      return implode($strSeparator, $rt);
-    }
-    return $rt;
-  }
-}
-
 
 if (!function_exists('new_addslashes')) {
   /**
