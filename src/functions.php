@@ -2,11 +2,8 @@
 
 declare (strict_types=1);
 
-use Qingclouds\Thinklib\Facade\Db;
+
 use Qingclouds\Thinklib\Tools\Emoji;
-use think\db\exception\DataNotFoundException;
-use think\db\exception\DbException;
-use think\db\exception\ModelNotFoundException;
 use think\facade\Log;
 use think\facade\Validate;
 
@@ -143,27 +140,7 @@ if (!function_exists('saveFile')) {
   }
 }
 
-if (!function_exists('sysconf')) {
-  /**
-   * 设备或配置系统参数
-   * @param string $name 参数名称
-   * @param boolean $value 无值为获取
-   * @return string|boolean
-   */
-  function sysconf($name, $value = null)
-  {
-    static $data = [];
-    list($field, $raw) = explode('|', "$name|");
-    if ($value !== null) {
-      list($row, $data) = [['name' => $field, 'value' => $value], []];
-      return \Qingclouds\Thinklib\Tools\Data::save('SystemConfig', $row, 'name');
-    }
-    if (empty($data)) {
-      $data = Db::name('SystemConfig')->column('value', 'name');
-    }
-    return isset($data[$field]) ? (strtolower($raw) === 'raw' ? $data[$field] : htmlspecialchars($data[$field])) : '';
-  }
-}
+
 
 
 if (!function_exists('validate_func')) {
@@ -294,67 +271,6 @@ if (!function_exists('randString')) {
   }
 }
 
-if (!function_exists('changePoint')) {
-  /**
-   * 修改积分
-   * @param int $uid 用户id
-   * @param int $number 变动的数量
-   * @param int $type 积分变动的类别.0=>'人工修改',1=>'签到',2=>'购买',3=>'分享',4=>'评论',5=>'提现失败资金退回',6=>'下载app',7=>'新注册用户',8=>'邀请注册',9=>'推荐商品',10=>'兑换礼品',
-   * @param int $action 默认是1，为加积分，设置为-1为减积分
-   * @param string $content
-   * @param null $order_id
-   * @return bool
-   * @throws DataNotFoundException
-   * @throws DbException
-   * @throws ModelNotFoundException
-   */
-  function changePoint($uid, $number, $type, $action = 1, $content = '积分变动', $order_id = null)
-  {
-
-    $ext = Db::name('UserExt')->where('user_id', $uid)->find();
-    if (!$ext) {
-      return false;
-    }
-
-    if (!isset($number) || !isset($action) || !isset($type)) {
-      return false;//参数缺失
-    }
-    //积分不够就别干了
-    if ($ext['points_num'] + $action * $number < 0) {
-      return false;
-    }
-    $params = [
-      'user_id' => $uid,
-      'before_points' => $ext['points_num'],//从用户的额外信息表里面拿现在的积分
-      'number' => $number,
-      'after_points' => $ext['points_num'] + $action * $number,//判断是否大于0
-      'type' => $type,
-      'action' => $action,
-      'content' => $content,
-      'order_id' => $order_id
-    ];
-
-//    trace($params,'error');
-
-    $nid = Db::name('UserPoints')->insertGetId($params);
-    if (!$nid) {
-      return false;
-    }
-
-    $num = $ext['points_num'] + $action * $number;//如果为正就加，如果为负就减
-//    trace($num,'error');
-    $rt2 = Db::name('UserExt')->where('user_id', $uid)->update(['points_num' => $num]);
-    if ($rt2 === false) {
-      return false;
-    }
-
-    //sendNotify($uid,1,'#积分变动#','您的积分发生了变动:'.$action*$number);
-
-    return true;
-
-
-  }
-}
 
 
 if (!function_exists('isMobile')) {
@@ -374,39 +290,6 @@ if (!function_exists('isMobile')) {
 }
 
 
-if (!function_exists('checkPhoneCode')) {
-  /**
-   * @param $BizId
-   * @param $code
-   * @return bool
-   * @throws DataNotFoundException
-   * @throws DbException
-   * @throws ModelNotFoundException
-   */
-  function checkPhoneCode($BizId, $code)
-  {
-    $phoneCode = Db::name('phoneCode')->where(['BizId' => $BizId])->find();
-
-    if (!isset($phoneCode)) {
-      error('短信回执参数错误');
-    }
-
-    Db::name('phoneCode')->where(['BizId' => $BizId])->update(['code_status' => 1]);//修改使用过了
-
-    if ($phoneCode['code'] && $phoneCode['code'] == $code) {
-      //二十分钟过期
-      if ($phoneCode['create_time'] < (time() - 20 * 60)) {
-
-        error('验证码过期');
-      }
-      return true;
-    } else {
-      error('验证码输入错误');
-      return false;
-    }
-
-  }
-}
 
 if (!function_exists('uuid')) {
   /**
